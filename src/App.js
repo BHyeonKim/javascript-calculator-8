@@ -13,18 +13,32 @@ const SPLITTER_NOT_EXISTS = -1;
 
 class App {
   async run() {
-    const userInput = await this.getUserInput();
+    try{
 
-    const [delimiter, numString] =this.parseStringToDelimiterAndNumberString(userInput);
+      const userInput = await this.getUserInput();
+      
+      const [delimiter, numString] =this.parseStringToDelimiterAndNumberString(userInput);
+      
+      const split = this.generateCustomSplitFunction(delimiter);
+      
+      const parsedArr = split(numString);
+      const numArr = this.convertArrToNumArr(parsedArr);
+      
+      const result = numArr.reduce((acc, val) => acc + val, 0);
+      
+      Console.print('결과 : ' + result);
+    }catch(error){
+      let errorMessage = '[ERROR]'
 
-    const split = this.generateCustomSplitFunction(delimiter);
+      if(error instanceof Error){
+        errorMessage += error.message
+      }else{
+        errorMessage += '실행중에 에러가 발생했습니다.'
+      }
 
-    const parsedArr = split(numString);
-    const numArr = this.convertArrToNumArr(parsedArr);
 
-    const result = numArr.reduce((acc, val) => acc + val, 0);
-
-    Console.print('결과 : ' + result);
+      throw new Error(errorMessage)
+    }
   }
 
   async getUserInput(){
