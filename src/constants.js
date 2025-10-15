@@ -1,0 +1,10 @@
+export const START_SPLITTER = '//';
+export const END_SPLITTER = '\\n';
+
+export const SPLITTER_LENGTH = START_SPLITTER.length;
+export const DELIMITER_CHARACTER_LENGTH = 1;
+
+export const START_SPLITTER_POSITION = 0;
+export const END_SPLITTER_POSITION = SPLITTER_LENGTH + DELIMITER_CHARACTER_LENGTH;
+
+export const SPLITTER_NOT_EXISTS = -1; 
