@@ -17,7 +17,7 @@ class App {
 
     const [delimiter, numString] =this.parseStringToDelimiterAndNumberString(userInput);
 
-    const split = this.generateSplitFunction(delimiter);
+    const split = this.generateCustomSplitFunction(delimiter);
 
     const parsedArr = split(numString);
     const numArr = this.convertArrToNumArr(parsedArr);
@@ -57,9 +57,17 @@ class App {
     }
   }
 
-  generateSplitFunction(delimiter = ''){
+  generateCustomSplitFunction(delimiter = ''){
     return function(string){
-      return string.split(delimiter)
+      let regxString = ',|;'
+
+      if(delimiter){
+        regxString += '|' + delimiter
+      }
+
+      const regx = new RegExp(regxString)
+
+      return string.split(regx)
     }
   }
 
