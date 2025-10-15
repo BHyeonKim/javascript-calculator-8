@@ -21,6 +21,10 @@ class App {
 
     const parsedArr = split(numString);
     const numArr = this.convertArrToNumArr(parsedArr);
+
+    const result = numArr.reduce((acc, val) => acc + val, 0);
+
+    Console.print('결과 : ' + result);
   }
 
   async getUserInput(){
