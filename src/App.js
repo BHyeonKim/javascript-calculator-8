@@ -85,6 +85,10 @@ class App {
         throw new Error('배열에 숫자가 아닌 값이 들어있습니다.');
       }
 
+      if(num <= 0){
+        throw new Error('숫자는 양수만 가능합니다.')
+      }
+
       numArr.push(num);
     }
 
