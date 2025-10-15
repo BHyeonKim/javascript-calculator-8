@@ -50,6 +50,12 @@ class App {
       throw new Error('구분자의 입력이 잘못되었습니다.')
     }
   }
+
+  generateSplitFunction(delimiter = ''){
+    return function(string){
+      return string.split(delimiter)
+    }
+  }
 }
 
 
