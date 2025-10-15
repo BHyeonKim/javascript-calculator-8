@@ -17,8 +17,9 @@ class App {
 
     const [delimiter, numString] =this.parseStringToDelimiterAndNumberString(userInput);
 
-    Console.print('구분자 : ' + delimiter);
-    Console.print('숫자배열 : ' + numString);
+    const split = this.generateSplitFunction(delimiter);
+
+    const parsedArr = split(numString);
   }
 
   async getUserInput(){
