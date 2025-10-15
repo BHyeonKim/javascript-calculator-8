@@ -20,6 +20,7 @@ class App {
     const split = this.generateSplitFunction(delimiter);
 
     const parsedArr = split(numString);
+    const numArr = this.convertArrToNumArr(parsedArr);
   }
 
   async getUserInput(){
@@ -56,6 +57,26 @@ class App {
     return function(string){
       return string.split(delimiter)
     }
+  }
+
+  convertArrToNumArr(arr){
+    if(!Array.isArray(arr)){
+      throw new Error('배열이 아닙니다.');
+    }
+
+    const numArr = [];
+
+    for(const item of arr){
+      const num = Number(item);
+
+      if(Number.isNaN(num)){
+        throw new Error('배열에 숫자가 아닌 값이 들어있습니다.');
+      }
+
+      numArr.push(num);
+    }
+
+    return numArr;
   }
 }
 
