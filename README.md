@@ -63,3 +63,24 @@
 
 - [x] ERROR. 잘못된 입력값이 들어올 경우 Error를 Throw 한다.
 
+## 메서드
+
+### Class App
+#### run() => void
+> 실행 메서드
+<br/>
+
+#### `getUserInput() => string`
+> 사용자의 입력을 받아 문자열을 반환하는 메서드
+<br/>
+
+#### `parseStringToDelimiterAndNumberString(string) => [customDelimiter, numberString]`
+> 문자열을 받아 커스텀 구분자와 숫자문자열로 파싱하는 메서드
+<br/>
+
+#### `generateCustomSplitFunction(delimiter) => Function`
+> 커스텀 구분자를 받아서 해당 구분자로 문자열을 분리하는 함수를 반환하는 메서드
+<br/>
+
+#### `convertArrToNumArr(arr) => Array<number>`
+> 문자열 배열을 받아 숫자 배열로 변환하여 반환하는 메서드
