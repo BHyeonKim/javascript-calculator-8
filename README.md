@@ -1,8 +1,8 @@
 # javascript-calculator-precourse
 
 ## 실행 흐름
-- [x] 1. 사용자의 입력값을 받습니다.   
-(형식: "" => 0, "1,2" => 3, "1,2,3" => 6, "1,2:3" => 6, ?//;\n1;2;3" => 6)
+- [x] 1. 사용자의 입력값을 받습니다.    
+(형식: "" => 0, "1,2" => 3, "1,2,3" => 6, "1,2:3" => 6, "//;\n1;2;3" => 6)
 
 - [x] 2. 입력값을 구분자와 나머지 문자열로 파싱합니다.   
       2-1. 시작 splitter(`//`)와 마지막 splitter(`\n`)가 둘다 존재하지 않으면(`SPLITTER_NOT_EXISTS`) 커스텀 구분자가 없는것으로 판단하고 입력으로 들어온 문자열을 내보냅니다.   
@@ -13,8 +13,8 @@
 
 - [x] 4. 문자열을 split 함수에 전달하여 배열로 변환합니다.
 
-- [x] 5. 배열을 `convertToNumArr` 메서드에 전달하여 숫자 배열로 변환합니다.   
-      5-1. 변환중에 `NaN`이 있으면 Error를 Throw 합니다.   
+- [x] 5. 배열을 `convertArrToNumArr` 메서드에 전달하여 숫자 배열로 변환합니다.
+      5-1. 변환중에 `NaN`이 있으면 Error를 Throw 합니다.
       ERROR. 숫자가 양수가 아니면 Error를 Throw 합니다.
 
 - [x] 6. 숫자를 다 더합니다.
@@ -66,8 +66,9 @@
 ## 메서드
 
 ### Class App
-#### run() => void
-> 실행 메서드
+
+#### `run() => void`
+> 메인 실행 메서드
 <br/>
 
 #### `getUserInput() => string`
@@ -75,7 +76,7 @@
 <br/>
 
 #### `parseStringToDelimiterAndNumberString(string) => [customDelimiter, numberString]`
-> 문자열을 받아 커스텀 구분자와 숫자문자열로 파싱하는 메서드
+> 문자열을 받아 `//`와 `\n`를 기준으로 커스텀 구분자와 숫자문자열로 파싱하는 메서드
 <br/>
 
 #### `generateCustomSplitFunction(delimiter) => Function`
