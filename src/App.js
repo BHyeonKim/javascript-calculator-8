@@ -78,7 +78,7 @@ class App {
 
   generateCustomSplitFunction(delimiter = '') {
     return function (string) {
-      let regxString = ',|;';
+      let regxString = ',|:';
 
       if (delimiter) {
         regxString += `|${delimiter}`;
