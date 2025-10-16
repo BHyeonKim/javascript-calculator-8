@@ -1,96 +1,110 @@
 import { Console } from '@woowacourse/mission-utils';
-import {END_SPLITTER,END_SPLITTER_POSITION,SPLITTER_LENGTH,SPLITTER_NOT_EXISTS,START_SPLITTER,START_SPLITTER_POSITION} from './constants';
+import {
+  END_SPLITTER,
+  END_SPLITTER_POSITION,
+  SPLITTER_LENGTH,
+  SPLITTER_NOT_EXISTS,
+  START_SPLITTER,
+  START_SPLITTER_POSITION,
+} from './constants';
 
 class App {
   async run() {
-    try{
-
+    try {
       const userInput = await this.getUserInput();
-      
-      const [delimiter, numString] =this.parseStringToDelimiterAndNumberString(userInput);
-      
+
+      const [delimiter, numString] =
+        this.parseStringToDelimiterAndNumberString(userInput);
+
       const split = this.generateCustomSplitFunction(delimiter);
-      
+
       const parsedArr = split(numString);
       const numArr = this.convertArrToNumArr(parsedArr);
-      
-      const result = numArr.reduce((acc, val) => acc + val, 0);
-      
-      Console.print('결과 : ' + result);
-    }catch(error){
-      let errorMessage = '[ERROR]'
 
-      if(error instanceof Error){
-        errorMessage += error.message
-      }else{
-        errorMessage += '실행중에 에러가 발생했습니다.'
+      const result = numArr.reduce((acc, val) => acc + val, 0);
+
+      Console.print(`결과 : ${result}`);
+    } catch (error) {
+      let errorMessage = '[ERROR]';
+
+      if (error instanceof Error) {
+        errorMessage += error.message;
+      } else {
+        errorMessage += '실행중에 에러가 발생했습니다.';
       }
 
-
-      throw new Error(errorMessage)
+      throw new Error(errorMessage);
     }
   }
 
-  async getUserInput(){
-    try{
-      const userInput = await Console.readLineAsync('덧샘할 문자열을 입력해 주세요.\n');
-      
+  async getUserInput() {
+    try {
+      const userInput = await Console.readLineAsync(
+        '덧샘할 문자열을 입력해 주세요.\n',
+      );
+
       return userInput;
-    } catch (error){
+    } catch {
       throw new Error('입력과정에서 오류가 발생했습니다.');
     }
   }
 
-  parseStringToDelimiterAndNumberString(string){
+  parseStringToDelimiterAndNumberString(string) {
     const startIndexOfSplitter = string.indexOf(START_SPLITTER);
     const endIndexOfSplitter = string.indexOf(END_SPLITTER);
-    
 
-    if(startIndexOfSplitter === SPLITTER_NOT_EXISTS && endIndexOfSplitter === SPLITTER_NOT_EXISTS){
+    if (
+      startIndexOfSplitter === SPLITTER_NOT_EXISTS &&
+      endIndexOfSplitter === SPLITTER_NOT_EXISTS
+    ) {
       return [null, string];
     }
 
-
-    if(startIndexOfSplitter === START_SPLITTER_POSITION && endIndexOfSplitter === END_SPLITTER_POSITION ){
-      const delimiter = string.slice(startIndexOfSplitter + SPLITTER_LENGTH, endIndexOfSplitter);
+    if (
+      startIndexOfSplitter === START_SPLITTER_POSITION &&
+      endIndexOfSplitter === END_SPLITTER_POSITION
+    ) {
+      const delimiter = string.slice(
+        startIndexOfSplitter + SPLITTER_LENGTH,
+        endIndexOfSplitter,
+      );
       const numberString = string.slice(endIndexOfSplitter + SPLITTER_LENGTH);
 
-      return [delimiter, numberString]
-    }else{
-      throw new Error('구분자의 입력이 잘못되었습니다.')
+      return [delimiter, numberString];
     }
+    throw new Error('구분자의 입력이 잘못되었습니다.');
   }
 
-  generateCustomSplitFunction(delimiter = ''){
-    return function(string){
-      let regxString = ',|;'
+  generateCustomSplitFunction(delimiter = '') {
+    return function (string) {
+      let regxString = ',|;';
 
-      if(delimiter){
-        regxString += '|' + delimiter
+      if (delimiter) {
+        regxString += `|${delimiter}`;
       }
 
-      const regx = new RegExp(regxString)
+      const regx = new RegExp(regxString);
 
-      return string.split(regx)
-    }
+      return string.split(regx);
+    };
   }
 
-  convertArrToNumArr(arr){
-    if(!Array.isArray(arr)){
+  convertArrToNumArr(arr) {
+    if (!Array.isArray(arr)) {
       throw new Error('배열이 아닙니다.');
     }
 
     const numArr = [];
 
-    for(const item of arr){
+    for (const item of arr) {
       const num = Number(item);
 
-      if(Number.isNaN(num)){
+      if (Number.isNaN(num)) {
         throw new Error('배열에 숫자가 아닌 값이 들어있습니다.');
       }
 
-      if(num <= 0){
-        throw new Error('숫자는 양수만 가능합니다.')
+      if (num <= 0) {
+        throw new Error('숫자는 양수만 가능합니다.');
       }
 
       numArr.push(num);
@@ -99,7 +113,5 @@ class App {
     return numArr;
   }
 }
-
-
 
 export default App;
