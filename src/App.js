@@ -6,8 +6,8 @@ import {
   SPLITTER_NOT_EXISTS,
   START_SPLITTER,
   START_SPLITTER_POSITION,
-} from './constants';
-import MESSAGE from './messages';
+} from './constants.js';
+import MESSAGE from './messages.js';
 
 class App {
   async run() {
