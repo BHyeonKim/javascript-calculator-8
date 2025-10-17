@@ -7,7 +7,7 @@ import {
   START_SPLITTER,
   START_SPLITTER_POSITION,
 } from './constants';
-import MESSAGE from './messages'
+import MESSAGE from './messages';
 
 class App {
   async run() {
