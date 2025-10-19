@@ -15,6 +15,7 @@ module.exports = {
       "prettier"
     ],
     rules:{
-      "import/extensions": "off"
+      "import/extensions": "off",
+      "class-methods-use-this" : "off",
     }
 };
