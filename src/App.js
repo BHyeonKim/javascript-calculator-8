@@ -76,8 +76,8 @@ class App {
     throw new Error(MESSAGE.ERROR_INPUT_WRONG_DELIMITER);
   }
 
-  generateCustomSplitFunction(delimiter = '') {
-    return function (string) {
+  #generateCustomSplitFunction(delimiter = '') {
+    return (string) => {
       let regxString = ',|:';
 
       if (delimiter) {
