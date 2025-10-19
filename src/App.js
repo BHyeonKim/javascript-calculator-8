@@ -1,12 +1,5 @@
 import { Console } from '@woowacourse/mission-utils';
-import {
-  END_SPLITTER,
-  END_SPLITTER_POSITION,
-  SPLITTER_LENGTH,
-  SPLITTER_NOT_EXISTS,
-  START_SPLITTER,
-  START_SPLITTER_POSITION,
-} from './constants.js';
+import CONSTANTS from './constants.js';
 import MESSAGE from './messages.js';
 
 class App {
@@ -49,25 +42,25 @@ class App {
   }
 
   #parseStringToDelimiterAndNumberString(string) {
-    const startIndexOfSplitter = string.indexOf(START_SPLITTER);
-    const endIndexOfSplitter = string.indexOf(END_SPLITTER);
+    const startIndexOfSplitter = string.indexOf(CONSTANTS.START_SPLITTER);
+    const endIndexOfSplitter = string.indexOf(CONSTANTS.END_SPLITTER);
 
     if (
-      startIndexOfSplitter === SPLITTER_NOT_EXISTS &&
-      endIndexOfSplitter === SPLITTER_NOT_EXISTS
+      startIndexOfSplitter === CONSTANTS.SPLITTER_NOT_EXISTS &&
+      endIndexOfSplitter === CONSTANTS.SPLITTER_NOT_EXISTS
     ) {
       return [null, string];
     }
 
     if (
-      startIndexOfSplitter === START_SPLITTER_POSITION &&
-      endIndexOfSplitter === END_SPLITTER_POSITION
+      startIndexOfSplitter === CONSTANTS.START_SPLITTER_POSITION &&
+      endIndexOfSplitter === CONSTANTS.END_SPLITTER_POSITION
     ) {
       const delimiter = string.slice(
-        startIndexOfSplitter + SPLITTER_LENGTH,
+        startIndexOfSplitter + CONSTANTS.SPLITTER_LENGTH,
         endIndexOfSplitter,
       );
-      const numberString = string.slice(endIndexOfSplitter + SPLITTER_LENGTH);
+      const numberString = string.slice(endIndexOfSplitter + CONSTANTS.SPLITTER_LENGTH);
 
       return [delimiter, numberString];
     }
