@@ -12,15 +12,15 @@ import MESSAGE from './messages.js';
 class App {
   async run() {
     try {
-      const userInput = await this.getUserInput();
+      const userInput = await App.getUserInput();
 
       const [delimiter, numString] =
-        this.parseStringToDelimiterAndNumberString(userInput);
+        this.#parseStringToDelimiterAndNumberString(userInput);
 
-      const split = this.generateCustomSplitFunction(delimiter);
+      const split = this.#generateCustomSplitFunction(delimiter);
 
       const parsedArr = split(numString);
-      const numArr = this.convertArrToNumArr(parsedArr);
+      const numArr = this.#convertArrToNumArr(parsedArr);
 
       const result = numArr.reduce((acc, val) => acc + val, 0);
 
@@ -38,11 +38,9 @@ class App {
     }
   }
 
-  async getUserInput() {
+  static async getUserInput(promptMessage = MESSAGE.MESSAGE_INTRODUCE) {
     try {
-      const userInput = await Console.readLineAsync(
-        `${MESSAGE.MESSAGE_INTRODUCE}\n`,
-      );
+      const userInput = await Console.readLineAsync(`${promptMessage}\n`);
 
       return userInput;
     } catch {
@@ -50,7 +48,7 @@ class App {
     }
   }
 
-  parseStringToDelimiterAndNumberString(string) {
+  #parseStringToDelimiterAndNumberString(string) {
     const startIndexOfSplitter = string.indexOf(START_SPLITTER);
     const endIndexOfSplitter = string.indexOf(END_SPLITTER);
 
