@@ -1,11 +1,11 @@
-import { Console } from '@woowacourse/mission-utils';
 import CONSTANTS from './constants.js';
 import MESSAGE from './messages.js';
+import Utils from './utils.js'
 
 class App {
   async run() {
     try {
-      const userInput = await App.getUserInput();
+      const userInput = await Utils.getUserInput();
 
       const [delimiter, numString] =
         this.#parseStringToDelimiterAndNumberString(userInput);
@@ -17,7 +17,7 @@ class App {
 
       const result = numArr.reduce((acc, val) => acc + val, 0);
 
-      Console.print(`결과 : ${result}`);
+      Utils.printResult(`결과 : ${result}`);
     } catch (error) {
       let errorMessage = '[ERROR]';
 
@@ -28,16 +28,6 @@ class App {
       }
 
       throw new Error(errorMessage);
-    }
-  }
-
-  static async getUserInput(promptMessage = MESSAGE.MESSAGE_INTRODUCE) {
-    try {
-      const userInput = await Console.readLineAsync(`${promptMessage}\n`);
-
-      return userInput;
-    } catch {
-      throw new Error(MESSAGE.ERROR_INPUT);
     }
   }
 
