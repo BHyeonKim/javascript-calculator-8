@@ -77,6 +77,8 @@
 
 #### `parseStringToDelimiterAndNumberString(string) => [customDelimiter, numberString]`
 > 문자열을 받아 `//`와 `\n`를 기준으로 커스텀 구분자와 숫자문자열로 파싱하는 메서드
+- 커스텀 구분자가 있는 경우: `"//;\n1;2;3"` → `[";", "1;2;3"]`
+- 커스텀 구분자가 없는 경우: `"1,2:3"` → `[null, "1,2:3"]`
 <br/>
 
 #### `generateCustomSplitFunction(delimiter) => Function`
