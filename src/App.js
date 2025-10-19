@@ -90,14 +90,12 @@ class App {
     };
   }
 
-  convertArrToNumArr(arr) {
+  #convertArrToNumArr(arr) {
     if (!Array.isArray(arr)) {
       throw new Error(MESSAGE.ERROR_NOT_ARRAY);
     }
 
-    const numArr = [];
-
-    for (const item of arr) {
+    return arr.map((item) => {
       const num = Number(item);
 
       if (Number.isNaN(num)) {
@@ -108,10 +106,8 @@ class App {
         throw new Error(MESSAGE.ERROR_ONLY_POSITIVE);
       }
 
-      numArr.push(num);
-    }
-
-    return numArr;
+      return num;
+    });
   }
 }
 
