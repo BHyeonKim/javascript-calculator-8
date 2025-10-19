@@ -14,4 +14,7 @@ module.exports = {
       "airbnb-base",
       "prettier"
     ],
+    rules:{
+      "import/extensions": "off"
+    }
 };
